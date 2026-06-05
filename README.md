@@ -15,8 +15,10 @@ my-qa-portfolio/
 ├── pages/                  # Page Object Classes (UI locators & actions)
 │   ├── login_page.py
 │   └── inventory_page.py
+│   └── checkout_page.py
 ├── tests/                  # Pytest execution scripts
 │   └── test_ecommerce_flow.py
+│   └── test_checkout_flow.py
 ├── pytest.ini              # Pytest environment configuration
 └── README.md               # Project documentation
 ```
