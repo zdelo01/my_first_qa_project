@@ -2,6 +2,10 @@ import pytest
 import os
 import re
 
+from pages.login_page import LoginPage
+from pages.inventory_page import InventoryPage
+from pages.checkout_page import CheckOutPage
+
 # capture test results
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item):
@@ -12,9 +16,11 @@ def pytest_runtest_makereport(item):
 
 # Setup tracing automatically on the browser context
 @pytest.fixture(autouse=True)
-def manage_traces_and_screenshots(page, context, request):
+def manage_traces_and_screenshots(page, request):
     # Start tracing before the test runs
-    context.tracing.start(screenshots=True, snapshots=True, sources=True)
+    browser_context = page.context
+
+    browser_context.tracing.start(screenshots=True, snapshots=True, sources=True)
     
     yield # The test runs here
 
@@ -34,7 +40,21 @@ def manage_traces_and_screenshots(page, context, request):
         trace_dir = "test-results"
         os.makedirs(trace_dir, exist_ok=True)
         trace_path = os.path.join(trace_dir, f"{safe_name}_trace.zip")
-        context.tracing.stop(path=trace_path)
+        browser_context.tracing.stop(path=trace_path)
     else:
         # If the test passes, silently discard the trace data to save disk space
-        context.tracing.stop()
+        browser_context.tracing.stop()
+
+# Page Object Fixtures
+
+@pytest.fixture
+def login_page(page):
+    return LoginPage(page)
+
+@pytest.fixture
+def inventory_page(page):
+    return InventoryPage(page)
+
+@pytest.fixture
+def checkout_page(page):
+    return CheckOutPage(page)

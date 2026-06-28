@@ -7,5 +7,8 @@ class InventoryPage:
     def add_backpack_to_cart(self):
         self.add_backpack_button.click()
 
+    def click_cart_badge(self):
+        self.shopping_cart_badge.click()
+        
     def get_cart_count(self):
         return self.shopping_cart_badge.text_content()

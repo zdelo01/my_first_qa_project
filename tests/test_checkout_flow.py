@@ -1,15 +1,9 @@
 import pytest
 from playwright.sync_api import expect
-from pages.login_page import LoginPage
-from pages.inventory_page import InventoryPage
-from pages.checkout_page import CheckOutPage
+
 pytestmark = [pytest.mark.smoke, pytest.mark.regression]
 
-def test_user_checkout(page):
-    
-    login_page = LoginPage(page)
-    inventory_page = InventoryPage(page)
-    checkout_page = CheckOutPage(page)
+def test_user_checkout(page, login_page, inventory_page, checkout_page):
 
     # User logins in
     login_page.navigate()
@@ -17,7 +11,7 @@ def test_user_checkout(page):
 
     # User picks a product and checks the cart
     inventory_page.add_backpack_to_cart()
-    inventory_page.shopping_cart_badge.click()
+    inventory_page.click_cart_badge()
 
     # Checkout Process
     checkout_page.click_checkout_button()
