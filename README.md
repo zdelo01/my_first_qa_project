@@ -1,6 +1,6 @@
 # Web Automation Portfolio: Playwright & Pytest Framework
 
-A professional UI Test Automation Framework built from scratch using **Python**, **Playwright**, and **Pytest**. This project implements the **Page Object Model (POM)** design pattern to test an e-commerce workflow on the SauceDemo web application.
+A Junior UI Test Automation Framework built from scratch using **Python**, **Playwright**, and **Pytest**. This project implements the **Page Object Model (POM)** design pattern to test an e-commerce workflow on the SauceDemo web application.
 
 ## Key Features
 * **Page Object Model (POM):** Clean separation of test logic and UI element locators for high maintainability.
